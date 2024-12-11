@@ -40,3 +40,12 @@ The file is a text file with one word per line. The file is downloaded to the cu
 
 Index is saved to `.local` directory in the project root.
 Index file is "array" of int32 values which contains the byte offset of the beginning of each line in the input file.
+
+## Possible improvements
+
+- Fix bug
+- Write unit tests
+- Add API comments to the code
+- Somehow compress the index file
+- Increase performance of index creating by multithreading (workers) for computing positions
+- Increase offset size to 64 bit integer
