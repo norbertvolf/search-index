@@ -28,14 +28,6 @@ The file is a text file with one word per line. The file is downloaded to the cu
  ./random_line --download-dict --file dictionary.txt
 ```
 
-## Known bugs
-
-- The program does not handle well the case when the file is contains non-ascii characters.
-
-```bash
- ./random_line dictionary.txt 52555
-```
-
 ## Index position
 
 Index is saved to `.local` directory in the project root.
