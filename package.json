@@ -5,7 +5,6 @@
   "description": "Just playing",
   "main": "index.js",
   "scripts": {
-    "prepare": "node ./bin/readFiles.js",
     "validate:eslint": "eslint",
     "validate:prettier": "prettier --check $npm_package_config_prettierFiles",
     "prettier": "prettier --write **/*.js",
