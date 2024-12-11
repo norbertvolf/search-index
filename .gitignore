@@ -1,0 +1,6 @@
+*.swp
+*.bak
+node_modules
+npm-debug.log
+wordlist.txt
+.local

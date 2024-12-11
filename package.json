@@ -1,0 +1,22 @@
+{
+  "name": "search-index",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Just playing",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "node ./bin/readFiles.js",
+    "validate:eslint": "eslint",
+    "validate:prettier": "prettier --check $npm_package_config_prettierFiles",
+    "prettier": "prettier --write **/*.js",
+    "validate": "npm run validate:eslint && npm run validate:prettier\n",
+    "watch": "nodemon -e js,xml -x \"npm run validate\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.16.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.2"
+  }
+}

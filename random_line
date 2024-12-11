@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+import storage from "./lib/storage.js";
+import config from "./lib/config.js";
+import dict from "./lib/dict.js";
+import indexFile from "./lib/indexFile.js";
+
+if (config.showHelp) {
+    console.log("Usage:");
+    console.log("Download dictionary data: ./random_line --download-dict --file dictionary.txt ");
+    console.log("Show string on index: ./random_line --index 3333 --file dictionary.txt ");
+    console.log("Show string on index by position: ./random_line dictionary.txt 3333");
+} else if (config.downloadDict) {
+    storage
+        .prepareDirectory(config.workingDirectory)
+        .then(() => {
+            return Promise.all(
+                config.sourceUrls.map((sourceUrl) => dict.downloadFile(sourceUrl, config.workingDirectory)),
+            );
+        })
+        .then((filePaths) => {
+            return dict.concatFiles(filePaths, config.testFile);
+        })
+        .then(() => {
+            console.log(`All files are concatenated successfully into the ${config.testFile}`);
+        })
+        .catch((err) => {
+            console.error(`Error while processing preparation: ${err.message}`);
+        });
+} else {
+    storage
+        .prepareDirectory(config.workingDirectory, false)
+        .then(() => indexFile.getIndexFileInfo(config.testFile, config.workingDirectory, config.delimiter))
+        .then((indexFileInfo) =>
+            indexFile.readContentPositionInFile(config.testPosition, indexFileInfo.path, config.delimiter),
+        )
+        .then((contentPosition) => storage.readContent(contentPosition, config.testFile))
+        .then((content) => {
+            console.log(`In the position ${config.testPosition} is "${content}" string found.`);
+        })
+        .catch((err) => {
+            console.error(err.message);
+        });
+}
