@@ -5,7 +5,7 @@ Playing with search index
 ## Build
 
 ```bash
-git cone https://github.com/norbertvolf/search-index.git
+git clone https://github.com/norbertvolf/search-index.git
 cd search-index
 npm install
 ```
